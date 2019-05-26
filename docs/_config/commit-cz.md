@@ -14,3 +14,8 @@ package.json
   }
 
 ### changlog
+ npm install -g conventional-changelog
+
+ conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md
+
+ 配置并生成changelog 文件
