@@ -2,6 +2,7 @@ const path = require('path');
 const config = require('../config');
 
 const Webpack = require('webpack');
+const assetsWebpackPlugin = require('assets-webpack-plugin');
 const merge = require('webpack-merge');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -23,6 +24,10 @@ const dllDev = {
             // context: config.devDllContent,
             name: '[name]',
             path: path.join(config.devDllPath, '/[name]-manifest.json')
+        }),
+        new assetsWebpackPlugin({
+            path: config.devDllPath,
+            filename: 'vendor-config.json'
         })
     ]
 }
@@ -56,7 +61,12 @@ const dllProd = {
             // context: config.devDllContent,
             name: '[name]',
             path: path.join(config.prodDllPath, '/[name]-manifest.json')
+        }),
+        new assetsWebpackPlugin({
+            path: config.prodDllPath,
+            filename: 'vendor-config.json'
         })
+        
     ]
 }
 
@@ -82,3 +92,4 @@ function dllHelpPromise(config) {
         })
     })
 }
+
