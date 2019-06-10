@@ -1,6 +1,5 @@
 const path = require('path');
 const configuration = require('../config');
-const webpack = require('webpack');
 
 const {rootPath} = configuration;
 
@@ -34,10 +33,10 @@ module.exports = function (config = {}) {
                     {
                         loader: 'css-loader'
                     },
-                    // postcss自动加前缀 # todo
-                    {
+                    // postcss自动加前缀 #todo
+                    // {
 
-                    },
+                    // },
                     {
                         loader: 'less-loader'
                     }
@@ -45,7 +44,7 @@ module.exports = function (config = {}) {
             }
         ],
     };
-    const pligins = [
+    const plugins = [
         // new Webpack.DllReferencePlugin({
         //     manifest: require(path.join(config.devDllPath, `${item}-manifest.json`))
         // })
@@ -53,6 +52,6 @@ module.exports = function (config = {}) {
     return {
         resolve,
         module,
-        pligins,
+        plugins,
     }
 }

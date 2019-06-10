@@ -9,6 +9,7 @@ function loadGenerators (npath, plop) {
         const extraData = {
             currentPath,
             today: moment().format('YYYY-MM-DD'),
+            userName: config.userName,
             // ...basicGlobalConfig,
             // ...globalConfig
         };

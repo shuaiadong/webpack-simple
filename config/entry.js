@@ -1,9 +1,11 @@
+const path = require('path');
+
+function p(paths) {
+    return path.join(__dirname, paths);
+};
 
 module.exports = {
     index: {
-        entry: {
-            
-        },
-        template: '',
+        entry: [p('../src/modules/index.js')],
     }
 }

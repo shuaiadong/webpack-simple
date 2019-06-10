@@ -22,8 +22,8 @@ module.exports = function (plop, data) {
         prompts,
         actions: function (inputs) {
             const compPath = '{{currentPath}}/{{compClass}}';
-            console.log(compPath,' compPath')
-            console.log(path.join(data.currentPath, inputs.compName, '/index.js'), 'data')
+            data.compName = inputs.compName;
+
             let actions = [
                 {
                     type: 'add',
