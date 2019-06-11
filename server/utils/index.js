@@ -6,12 +6,12 @@ const path = require('path');
  * @param {*} data 模版
  * @param {*} open flag
  */
-function entryTemplate (data, open) {
+function entryTemplate (data, open = false) {
     if (!open) {
         return `document.body.innerHTML = '<h1>尚未打开<h1>'`;
     }
     return Object.keys(data).map(entry => {
-        return `require(${entry});`
+        return `require('${data[entry]}');`
     }) + `
     // 模块热更新
     if(module.hot){
@@ -20,6 +20,28 @@ function entryTemplate (data, open) {
     `
 }
 module.exports = {
+/**
+ * entrys  = { index : {entry: [] } }
+ */
+initEntrys (entrys = {}) {
+    let entry = {
+
+    };
+    Object.keys(entrys).forEach(key => {
+        entry[key] = {
+            entry: [
+                'react-hot-loader/patch',
+                'webpack-hot-middleware/client',
+                this.writeFIle({
+                    entry: key,
+                    data: entryTemplate(entrys[key].entry, true),
+                })
+            ]
+    }
+    });
+    return entry;
+
+},
 /**
  * 写文件
  * @params
@@ -31,13 +53,14 @@ module.exports = {
     dirName = '',
     data = 'heelo word!'
 } = {}) {
-    const fileName = path.join(__dirname, dirName, entry);
-    const templateStr = JSON.stringify(data);
-
+    const fileName = path.join(__dirname, '../entrys/', `${entry}.js`);
+    const templateStr = data;
+    
     fs.writeFileSync(
-        path.join(__dirname, entry),
+        fileName,
         templateStr
         );
+    return fileName
 },
 
 /**
@@ -47,6 +70,9 @@ module.exports = {
  * @param {*} open bool
  */
 toggle(entry, data, open = false) {
-    this.writeFIle(entry, entryTemplate(data, open))
+    this.writeFIle({
+            entry,
+            data: entryTemplate(data, open)
+    })
 }
 }

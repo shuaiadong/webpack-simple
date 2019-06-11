@@ -1,5 +1,6 @@
 const utils = require('./utils');
 const path = require('path');
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const base = require('./webpack.base.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -28,12 +29,13 @@ module.exports = function (entrys = {}) {
     entry,
     
     plugins:[
-        ...htmlPlugins(entry)
+        ...htmlPlugins(entry),
+        new webpack.HotModuleReplacementPlugin()
     ],
     
     output: {
         filename: 'js/[name].dev.js',
-        chunkFilename: '[name].chunk.js',
+        chunkFilename: 'js/[name].chunk.js',
         path: path.resolve(__dirname, '../../dist/'),
         publicPath: '/'
     }

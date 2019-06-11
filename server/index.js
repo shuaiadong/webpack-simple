@@ -12,13 +12,10 @@ const WebpackDevMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 
 const app = express();
-console.log(devConfig(confing), 'devConfig(confing)')
-
-// const compilter = Webpack(devConfig);
-// app.use(WebpackDevMiddleware(compilter));
-// app.use(hotMiddleware(compilter));
-
-let devEntry = {};
+console.log(devConfig(_utils.initEntrys(confing)), 'devConfig(_utils.initEntrys(confing))')
+const compilter = Webpack(devConfig(_utils.initEntrys(confing)));
+app.use(WebpackDevMiddleware(compilter));
+app.use(hotMiddleware(compilter));
 
 // /**
 //  * 动态开启module模块
@@ -29,6 +26,6 @@ let devEntry = {};
 //     Object.keys(entry => _utils.toggle(entry, open));
 // });
 
-// app.listen(serverConfig.port, ()=> {
-//     console.log(`${serverConfig.port}启动成功`)
-// });
+app.listen(serverConfig.port, ()=> {
+    console.log(`${serverConfig.port}启动成功`)
+});
