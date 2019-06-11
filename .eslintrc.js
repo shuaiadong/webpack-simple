@@ -3,7 +3,10 @@ module.exports = {
         "browser": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -19,5 +22,7 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "quotes": [1, "single"],//引号类型 `` "" ''
+        'no-unused-vars': 0
     }
 };

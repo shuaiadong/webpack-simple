@@ -1,7 +1,7 @@
 const path = require('path');
 
 const config = {
-    rootPath: '../',
+    rootPath: '../../',
     // htmlTemplate: 'src/template/index.html',
     devDllPath: path.resolve(__dirname, '../dist/dev-dll/'),
     prodDllPath: path.resolve(__dirname, '../dist/prod-dll/'),

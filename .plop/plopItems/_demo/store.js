@@ -4,7 +4,7 @@
  * @date {{today}} 
  */
 export default class Store {
-    static key = 'indexPageStore'
+    static key = '{{compName}}-page'
     constructor(props) {
         this.rootStore = this;
     }

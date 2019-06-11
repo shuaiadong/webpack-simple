@@ -14,8 +14,9 @@ module.exports = function (api) {
     const plugins = [
         ['@babel/plugin-proposal-decorators', { 'legacy': true }], // @
         ['@babel/plugin-proposal-class-properties', { 'loose' : true }], // class
+        ['@babel/plugin-syntax-dynamic-import'],  // 动态import
         // ['@babel/plugin-transform-react-jsx'], // jsx 
-        // ['@babel/plugin-transform-runtime'] // or @babel/polyfill
+        ['@babel/plugin-transform-runtime'] // or @babel/polyfill
     ];
 
 

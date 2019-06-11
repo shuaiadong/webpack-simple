@@ -1,7 +1,3 @@
-import h, {React} from './h';
-
-
-export default {
-    h,
-    React
-}
+import h from './h';
+import c from 'classname';
+export { h, c };

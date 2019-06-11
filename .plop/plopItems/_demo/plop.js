@@ -8,7 +8,7 @@ module.exports = function (plop, data) {
                 {
                     type: 'input',
                     name: 'compName',
-                    message: '组件的名称是什么？'
+                    message: 'demo名称是什么？'
                 }
             ])
             .then(inputs => {
@@ -18,7 +18,7 @@ module.exports = function (plop, data) {
     }
 
 
-    plop.setGenerator('component', {
+    plop.setGenerator('_demo', {
         prompts,
         actions: function (inputs) {
             const compPath = '{{currentPath}}/{{compClass}}';
@@ -28,19 +28,19 @@ module.exports = function (plop, data) {
                 {
                     type: 'add',
                     data,
-                    path: path.join(data.currentPath, inputs.compName, '/index.js'),
+                    path: path.join(data.currentPath, '_demo/index.js'),
                     template: utils.template(__dirname, 'index.js')
                 },
                 {
                     type: 'add',
                     data,
-                    path: path.join(data.currentPath, inputs.compName, '/store.js'),
+                    path: path.join(data.currentPath, '_demo/store.js'),
                     template: utils.template(__dirname, './store.js')
                 },
                 {
                     type: 'add',
                     data,
-                    path: path.join(data.currentPath, inputs.compName, '/style.less'),
+                    path: path.join(data.currentPath, '_demo/style.less'),
                     template: utils.template(__dirname, './style.less')
                 }
             ];

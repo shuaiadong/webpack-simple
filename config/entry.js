@@ -5,7 +5,10 @@ function p(paths) {
 };
 
 module.exports = {
-    index: {
-        entry: [p('../src/modules/index.js')],
+    test: {
+        entry: [p('../src/modules/TestModule/index.js')]
+    },
+    'ui-demo': {
+        entry: [p('../src/modules/Ui-demoModule/index.js')]
     }
 }

@@ -28,10 +28,14 @@ module.exports = function (config = {}) {
                 test: /\.less$/,
                 use: [
                     {
-                        loader: 'style-loader'
+                        loader: 'style-loader',
+                      
                     },
                     {
-                        loader: 'css-loader'
+                        loader: 'css-loader',
+                        // options: {
+                        //     module: true
+                        // }
                     },
                     // postcss自动加前缀 #todo
                     // {

@@ -7,8 +7,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 function htmlPlugins (entry = {}) {
     return Object.keys(entry).map(item => {
         return new HtmlWebpackPlugin({
-            filename: 'pages/[name].html',
+            filename: `pages/${item}.html`, // todo name ?
             chunks: [item],
+            template: entry.template || path.resolve(__dirname, '../../template/index.html') //#todo 统一配置默认模版
         })
     })
 }
@@ -33,7 +34,8 @@ module.exports = function (entrys = {}) {
     output: {
         filename: 'js/[name].dev.js',
         chunkFilename: '[name].chunk.js',
-        path: path.resolve(__dirname, '../../dist/')
+        path: path.resolve(__dirname, '../../dist/'),
+        publicPath: '/'
     }
  });
 }
