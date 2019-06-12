@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script>
+function initToggleEvent() {
+    let toggle = document.querySelectorAll('.toggle-click');
+    toggle.forEach(item => {
+      item.onclick = () => fetchToggle(item.getAttribute('name'))
+    })
+}
+
+function fetchToggle(name) {
+  fetch(`/_toggle?entryName=${name}`, {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'user-agent': 'Mozilla/4.0 MDN Example',
+      'content-type': 'application/json'
+    },
+    cache: 'no-cache'
+  })
+}
+
+  fetch('/_getEntry?time='+ Date.now())
+  .then(function(response) {
+    return response.json();
+  })
+  .then((data) => {
+      let str = Object.keys(data).map(item => {
+            return `
+                <div>
+                   <span> ${item} </span>
+                   <span> status ${data[item].open ? '打开' : '关闭'} </span>
+                    <a target='block' href='/pages/${item}.html'>${item}</a>
+                    <button name='${item}' class="toggle-click">toggle</button>
+                </div>
+            `
+      })
+     document.querySelector('#root').innerHTML = `<div>${str}</div>`;
+     initToggleEvent();
+  })
+  .catch(err => {
+    console.log(err);
+     document.body.innerHTML = '<h1>_getEntry 失败 </h1>';
+  })
+</script>
+</html>
